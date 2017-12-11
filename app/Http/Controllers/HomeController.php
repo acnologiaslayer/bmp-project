@@ -28,4 +28,14 @@ class HomeController extends Controller
         $questions = \App\Question::all();
         return view('home', compact('missing', 'seen', 'questions'));
     }
+
+    function deleteMissing($id){
+        \App\MissingPeople::destroy($id);
+        return redirect('/home');
+    }
+
+    function deleteSighted($id){
+        \App\SightedPeople::destroy($id);
+        return redirect('/home');
+    }
 }

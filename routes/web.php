@@ -94,3 +94,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/missing/delete/{id}', 'HomeController@deleteMissing');
+Route::get('/sighted/delete/{id}', 'HomeController@deleteSighted');
+
