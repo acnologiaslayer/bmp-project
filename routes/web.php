@@ -41,7 +41,8 @@ Route::get('/missing', function () {
 });
 
 Route::get('/missing/search', function () {
-	return view('search');
+	$results = [];
+	return view('search', compact('results'));
 });
 
 Route::get('/missing/list', function () {
@@ -96,4 +97,5 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/missing/delete/{id}', 'HomeController@deleteMissing');
 Route::get('/sighted/delete/{id}', 'HomeController@deleteSighted');
+Route::post('/missing/search', 'HomeController@search');
 

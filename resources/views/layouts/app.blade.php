@@ -12,7 +12,9 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -80,7 +82,7 @@
 
         @yield('content')
     </div>
-
+    @stack('scripts')
     <!-- Scripts -->
     <script src="/js/app.js"></script>
 </body>

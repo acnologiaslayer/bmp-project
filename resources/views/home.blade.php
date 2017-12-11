@@ -17,7 +17,7 @@
                     <div class="tab-content">
                         <div id="missing" class="tab-pane fade in active">
                           <h3>Missing People</h3>
-                          <table class="table table-bordered table-striped">
+                          <table id="missingTable" class="table table-bordered table-striped">
                               <thead>
                                 <tr>
                                     <th>Pic</th>
@@ -56,7 +56,7 @@
                     </div>
                     <div id="sighted" class="tab-pane fade">
                       <h3>Sightings</h3>
-                      <table class="table table-bordered table-striped">
+                      <table id="#sightedTable" class="table table-bordered table-striped">
                           <thead>
                             <tr>
                                 <th colspan="9">Missing Person</th>
@@ -116,3 +116,10 @@
 </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $('#missingTable').DataTable();
+    $('#sightedTable').DataTable();
+</script>
+@endpush
