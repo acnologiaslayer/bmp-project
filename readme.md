@@ -38,3 +38,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+##Instructions
+
+1. Run 'composer install' using command line in the project directory.
+2. Create your own .env file according to .env.example provided.
+3. Put your DB connection settings in .env file.
+4. Run migrations using 'php artisan migrate' using command line in the project directory.
+5. Run the project using 'php artisan serve' using command line in the project directory.
+
+** You might need to run 'php artisan config:cache' or 'php artisan key:generate' to run the project if the above description doesn't work for you.
