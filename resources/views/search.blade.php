@@ -24,9 +24,23 @@
 		@if(count($results)>0)
 			<div class="container-fluid">
 				@foreach($results as $result)
-				<a href="/missing/{{$result->id}}">
-					<div class="is-fullwidth" style="border: 1px solid rgb(219, 219, 219); padding: 2%;">
-						{{$result->name}}
+				<a href="/missing/{{$result->id}}" class="columns" style="border: 1px solid rgb(219, 219, 219);">
+					<div class="column is-3">
+						<img src="{{asset('images/'.$result->photo)}}" class="img-responsive" alt="">
+					</div>
+					<div class="column is-9">
+						<span style="font-size: 2em">
+							{{$result->name}}
+						</span>
+						<br>
+						<span style="font-size: 1.5em">
+							{{$result->age}} Year Old - {{$result->gender}}
+						</span>
+						<br>
+						<span style="font-size: 1.5em">
+							Missing Since: <br>
+							{{\Carbon\Carbon::parse($result->missing_since)->toFormattedDateString()}}
+						</span>
 					</div>
 				</a>
 				@endforeach

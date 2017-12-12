@@ -25,7 +25,8 @@ Route::get('/getinvolved', function () {
 });
 
 Route::get('/faq', function () {
-	return view('faq');
+	$questions = \App\Question::all();
+	return view('faq', compact('questions'));
 });
 
 Route::get('/report', function () {
@@ -97,5 +98,20 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/missing/delete/{id}', 'HomeController@deleteMissing');
 Route::get('/sighted/delete/{id}', 'HomeController@deleteSighted');
-Route::post('/missing/search', 'HomeController@search');
+Route::get('/questions/delete/{id}', 'HomeController@deleteQuestion');
+Route::get('/questions/answer/{id}', 'HomeController@answerQuestion');
+Route::post('/missing/search', function (Request $request) {
+	$query = $request->term;
+        $results = \App\MissingPeople::where('name', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('age', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('gender', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('nid', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('father', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('mother', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('area', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('clothes', 'LIKE', '%' . $query . '%')
+                                    ->orWhere('description', 'LIKE', '%' . $query . '%')
+                                    ->get();
+        return view('search', compact('results'));
+});
 

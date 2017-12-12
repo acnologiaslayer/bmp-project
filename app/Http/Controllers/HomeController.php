@@ -39,19 +39,15 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-    function search(Request $request){
-        $query = $request->term;
-        // dd($request);
-        $results = \App\MissingPeople::where('name', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('age', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('gender', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('nid', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('father', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('mother', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('area', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('clothes', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('description', 'LIKE', '%' . $query . '%')
-                                    ->get();
-        return view('search', compact('results'));
+    function deleteQuestion($id){
+        \App\Question::destroy($id);
+        return redirect('/home');
+    }
+
+    function answerQuestion(Request $req, $id) {
+        \App\Question::whereId($id)->update([
+            'answer' => $req->answer
+        ]);
+        return redirect('/home');
     }
 }

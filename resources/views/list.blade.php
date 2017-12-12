@@ -12,7 +12,7 @@
 
 <section style="margin: 5em 0em;">
 	<div class="container">
-		<table class="table is-fullwidth is-striped is-hoverable">
+		<table id="missingTable" class="table is-fullwidth is-striped is-hoverable">
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -40,3 +40,9 @@
 </section>
 
 @endsection
+
+@push('scripts')
+<script>
+	$('#missingTable').DataTable();
+</script>
+@endpush

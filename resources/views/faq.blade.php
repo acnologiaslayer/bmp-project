@@ -36,11 +36,24 @@
 			<h2 class="title" style="font-size: 1.2em">6. How many members comprise this project? Can I volunteer?</h2>
 
 			<p style="margin-bottom: 2em">It doesn't have any fixed number of volunteers. Anyone can do the role of a volunteer if he/she wants. If you want to volunteer regarding a missing person's case, you can provide all your additional information or details by filling out the&nbsp;form in our volunteer section of this site.</p>
+
+			@if(count($questions)>0)
+			@foreach($questions as $index=>$q)
+			@if($q->answer != null)
+			@if($index < 1)
+			<h2 class="title" style="font-size: 1.2em">Other Questions:</h2>
+			@endif
+			<h2 class="title" style="font-size: 1.2em">{{$q->question}}</h2>
+			<p style="margin-bottom: 2em">{{$q->answer}}</p>
+			@endif
+			@endforeach
+			@endif
 		</div>
 		<h2 class="title" style="font-size: 1.2em">Ask your own questions:</h2>	
 		<form action="/askQuestion" method="post">
 			{{ csrf_field() }}
-			<textarea id="question" name="question" class="column is-12" cols="150" rows="10"></textarea>
+			<input type="email" name="sender" placeholder="Contact e-mail" class="column is-12" class="input"><br>
+			<textarea id="question" name="question" placeholder="Ask your question here" class="column is-12" cols="150" rows="10"></textarea>
 			<button class="button is-dark" style="margin: 1em 0em;" onclick="ask()">Send</button>
 		</form>
 	</div>

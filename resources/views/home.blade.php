@@ -85,7 +85,7 @@
                             <tr> 
                                  <td>{{$person->mfname}}</td>
                                  <td>{{$person->mlname}}</td>
-                                 <td>{{$person->date}}</td>
+                                 <td>{{\Carbon\Carbon::parse($person->date)->toFormattedDateString()}}</td>
                                  <td>{{$person->time}}</td>
                                  <td>{{$person->location}}</td>
                                  <td>{{$person->cctv}}</td>
@@ -106,7 +106,16 @@
                 <div id="questions" class="tab-pane fade">
                   <h3>FAQ Questions</h3>
                   @foreach($questions as $q)
-                  <h4>{{$q->id}}. {{$q->question}}</h4>
+                  <div style="clear: both;">
+                    <h4>
+                        Question: {{$q->question}}
+                    </h4>
+                    <form action="/questions/answer/{{$q->id}}">
+                        <input type="text" name="answer" cols="150" rows="10" class="col-sm-8 form-control" value="{{$q->answer}}">
+                        <input type="submit" value="Save answer" class="col-sm-2 btn btn-success pull-right" style="margin: 3px;">
+                    </form>
+                    <a href="/questions/delete/{{$q->id}}" class="col-sm-2 btn btn-danger pull-right" style="margin: 3px;">Delete</a>
+                </div>
                   @endforeach
               </div>
           </div>
@@ -119,7 +128,6 @@
 
 @push('scripts')
 <script>
-    $('#missingTable').DataTable();
-    $('#sightedTable').DataTable();
+    $('.table').DataTable();
 </script>
 @endpush
